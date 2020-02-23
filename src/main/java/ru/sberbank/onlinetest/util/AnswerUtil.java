@@ -29,7 +29,7 @@ public class AnswerUtil {
                             map(Option::getOptionItem)
                             .collect(Collectors.toList());
                     if (!optionStrings.contains(answerTo.getAnswer()))
-                    return false;
+                        return false;
                 }
             } else return false;
         }
@@ -42,6 +42,7 @@ public class AnswerUtil {
 
         return answerTos.stream()
                 .collect(Collectors.toMap(Function.identity(),
-                        answerTo -> answerTo.getAnswer().equals(correctAnswerMap.get(answerTo.getQuestionId()))));
+                        answerTo -> answerTo.getAnswer() != null &&
+                                answerTo.getAnswer().equals(correctAnswerMap.get(answerTo.getQuestionId()))));
     }
 }

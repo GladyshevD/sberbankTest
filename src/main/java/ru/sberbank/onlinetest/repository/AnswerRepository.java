@@ -48,7 +48,7 @@ public class AnswerRepository {
 
     public List<UserAnswer> getAll(Integer userId) {
         String query = "SELECT A.ID, A.QUESTION_ID, Q.QUESTION_ITEM, A.ANSWER, A.CORRECT " +
-                "FROM USER_ANSWER A LEFT OUTER JOIN QUESTION Q ON A.QUESTION_ID=Q.ID WHERE USER_ID=?";
+                "FROM USER_ANSWER A LEFT OUTER JOIN QUESTION Q ON A.QUESTION_ID=Q.ID WHERE USER_ID=? ORDER BY Q.ID";
         return jdbcTemplate.query(query, rs -> {
             List<UserAnswer> userAnswers = new ArrayList<>();
             while (rs.next()) {

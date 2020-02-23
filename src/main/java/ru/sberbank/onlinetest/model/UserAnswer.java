@@ -1,6 +1,5 @@
 package ru.sberbank.onlinetest.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -9,9 +8,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class UserAnswer extends AbstractBaseEntity {
-    private User user;
 
-    @JsonIgnore
+    private User user;
     private Question question;
     private String userAnswer;
     private boolean isCorrect;

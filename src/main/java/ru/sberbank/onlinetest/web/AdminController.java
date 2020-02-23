@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.sberbank.onlinetest.model.User;
+import ru.sberbank.onlinetest.model.statistics.AdminCabinet;
 import ru.sberbank.onlinetest.service.UserService;
 
 import java.util.List;
@@ -26,7 +27,13 @@ public class AdminController {
 
     @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
-        log.info("Get All Users");
+        log.debug("Get All Users");
         return userService.getAll();
+    }
+
+    @GetMapping(value = "/cabinet", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AdminCabinet getStatistics() {
+        log.debug("Get statistic for users");
+        return userService.getStatistics();
     }
 }
