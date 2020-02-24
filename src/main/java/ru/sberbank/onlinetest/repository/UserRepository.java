@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import ru.sberbank.onlinetest.model.Role;
 import ru.sberbank.onlinetest.model.User;
+import ru.sberbank.onlinetest.util.exception.UserAlreadyExistException;
 
 import java.util.*;
 
@@ -37,9 +38,14 @@ public class UserRepository {
 
     public User save(User user) {
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
-        Number newKey = insertUser.executeAndReturnKey(parameterSource);
-        user.setId(newKey.intValue());
-        insertRoles(user);
+        try {
+            Number newKey = insertUser.executeAndReturnKey(parameterSource);
+            user.setId(newKey.intValue());
+            insertRoles(user);
+
+        } catch (Exception e) {
+            throw new UserAlreadyExistException("Пользователь уже существует");
+        }
         return user;
     }
 

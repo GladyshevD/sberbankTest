@@ -60,7 +60,9 @@ public class StatisticsRepository {
                     .count() / allUsers);
             userCabinet.setBetterRate(betterRate);
         } catch (ArithmeticException a) {
-            throw new NotMuchUsersException("На вопросы пока ответил только один пользователь");
+            throw new NotMuchUsersException("Ваша статистика - " + successRate + ". " +
+                    "На вопросы пока ответил только один пользователь, остальная статистика появится после ответов " +
+                    "других пользователей");
         }
 
         return userCabinet;

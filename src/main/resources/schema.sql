@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS User
     name     VARCHAR(255)           NOT NULL,
     enabled  BOOLEAN   DEFAULT TRUE NOT NULL
 );
-CREATE UNIQUE INDEX user_unique_email_idx ON User (email);
+CREATE UNIQUE INDEX user_unique_email_idx ON User (username, email);
 
 CREATE TABLE IF NOT EXISTS Role
 (
